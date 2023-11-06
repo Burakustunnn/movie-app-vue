@@ -1,3 +1,5 @@
+const API_KEY = "e29242eb4c132df6f39057f594471f48";
+
 const useMovieStore = defineStore("movieStore", {
   state: () => ({
     currentMovie: [],
@@ -7,7 +9,6 @@ const useMovieStore = defineStore("movieStore", {
   getters: {},
   actions: {
     async getMovie() {
-      const API_KEY = "e29242eb4c132df6f39057f594471f48";
       const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
 
       this.loading = true;
@@ -18,7 +19,6 @@ const useMovieStore = defineStore("movieStore", {
       this.loading = false;
     },
     async getMovieDetails(id) {
-      const API_KEY = "e29242eb4c132df6f39057f594471f48";
       const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
 
       this.loading = true;

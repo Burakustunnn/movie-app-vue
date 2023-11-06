@@ -1,7 +1,6 @@
 <template>
   <fwb-input
-    v-model="query"
-    label="Search"
+    v-model="query"   
     placeholder="enter your search query"
     size="lg"
   >

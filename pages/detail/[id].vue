@@ -6,7 +6,7 @@ const IMG_API = "https://image.tmdb.org/t/p/w1280";
 const movieStore = useMovieStore();
 movieStore.getMovieDetails(route.params.id);
 const { currentDetail } = storeToRefs(movieStore);
-console.log(currentDetail);
+
 </script>
 
 <template>
@@ -26,7 +26,7 @@ console.log(currentDetail);
         class="flex flex-col justify-center items-center px-4 leading-normal flex-1"
       >
         <h5
-          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+          class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-900"
         >
           {{ currentDetail.title }}
         </h5>

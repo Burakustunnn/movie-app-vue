@@ -1,30 +1,11 @@
 <script setup>
-import { reactive } from "vue";
-import AuthComposables from "../../composables/AuthComposables";
 definePageMeta({
   layout: "custom",
-  name: "login",
+  name: "register",
 });
-const { signIn, inputData,signUpProvider } = AuthComposables();
+import AuthComposables from "../../composables/AuthComposables";
+const { createUser, inputData } = AuthComposables();
 
-// const inputData = reactive({ fullname: "", email: "", password: "", tel: "" });
-// import AuthComposables from "../../composables/AuthComposables";
-// const { signIn, inputData } = AuthComposables();
-// const handleSubmit = ()=>{
-//   signIn()
-// }
-
-// const signIn =  () => {
-//   console.log(inputData)
-//     const data = {
-//       email : inputData.email,
-//       password : inputData.password
-//     };
-//     authStore.authSuccess(data);
-//     console.log(data)
-//     localStorage.setItem("auth",JSON.stringify(data));
-//   router.push('/');
-//   };
 </script>
 
 <template>
@@ -41,7 +22,7 @@ const { signIn, inputData,signUpProvider } = AuthComposables();
           src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
           alt="logo"
         />
-        Moive
+        MovieApp
       </NuxtLink>
       <div
         class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
@@ -50,14 +31,25 @@ const { signIn, inputData,signUpProvider } = AuthComposables();
           <h1
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            Sign in to your account
+            Sign up MovieApp
           </h1>
-          <form
-            class="space-y-4 md:space-y-6"
-            method="POST"
-            action="#"
-            @submit.prevent="signIn"
-          >
+          <form class="space-y-4 md:space-y-6" @submit.prevent="createUser">
+            <div>
+              <label
+                for="fullName"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Full name</label
+              >
+              <input
+                type="fullName"
+                name="fullName"
+                id="fullName"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Stan Smith"
+                required
+                v-model="inputData.fullname"
+              />
+            </div>
             <div>
               <label
                 for="email"
@@ -72,6 +64,22 @@ const { signIn, inputData,signUpProvider } = AuthComposables();
                 placeholder="name@company.com"
                 required
                 v-model="inputData.email"
+              />
+            </div>
+            <div>
+              <label
+                for="tel"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Phone</label
+              >
+              <input
+                type="tel"
+                name="tel"
+                id="tel"
+                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="05** *** ** **"
+                required
+                v-model="inputData.tel"
               />
             </div>
             <div>
@@ -118,13 +126,6 @@ const { signIn, inputData,signUpProvider } = AuthComposables();
               class="w-full bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
               Sign in
-            </button>
-            <button
-              type="button"
-              class="w-full bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              @click="signUpProvider"
-            >
-            Continue with Google
             </button>
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don’t have an account yet?

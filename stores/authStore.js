@@ -1,11 +1,22 @@
 const useAuthStore = defineStore("authStore", {
   state: () => ({
-    currentAuth: null,
+    currentAuth:  null,
     loading: false,
   }),
-  getters: {},
+  getters: {
+    getCurrentAuth() {
+      return this.currentAuth;
+    },
+   
+  },
   actions: {
-    
-  }
-
+    authSuccess(data) {
+      this.currentAuth = data;
+    },
+    authFail() {
+      this.currentAuth = null;
+    },
+   
+  },
 });
+export default useAuthStore;
