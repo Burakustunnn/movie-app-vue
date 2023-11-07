@@ -8,11 +8,9 @@ const useMovieStore = defineStore("movieStore", {
   }),
   getters: {},
   actions: {
-    async getMovie() {
-      const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`;
-
+    async getMovie(apiKey) {
       this.loading = true;
-      const res = await fetch(FEATURED_API);
+      const res = await fetch(apiKey);
       const data = await res.json();
 
       this.currentMovie = data.results;

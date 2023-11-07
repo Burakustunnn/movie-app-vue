@@ -35,7 +35,7 @@ const modeDark = () => {
         />
         <span
           class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-          >Flowbite</span
+          >MovieApp</span
         >
       </NuxtLink>
       <div class="flex items-center md:order-2">
@@ -57,7 +57,7 @@ const modeDark = () => {
           />
         </button>
         <span
-          v-else="currentAuth"
+          v-else
           class="flex justify-center items-center gap-4"
         >
           <NuxtLink to="/login">Login</NuxtLink>
