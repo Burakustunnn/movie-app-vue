@@ -1,11 +1,13 @@
 <script setup>
-import useMovieStore from "../stores/movieStore";
+import MovieComposables from "~/composables/MovieComposables";
 const route = useRoute();
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 
-const movieStore = useMovieStore();
-movieStore.getMovieDetails(route.params.id);
+const {getMovieDetails} = MovieComposables();
 const { currentDetail } = storeToRefs(movieStore);
+getMovieDetails(route.params.id);
+console.log(currentDetail)
+
 
 </script>
 
@@ -17,7 +19,7 @@ const { currentDetail } = storeToRefs(movieStore);
       <div class="h-full w-full flex-1">
         <img
           class="rounded-s-lg object-cover h-full w-full"
-          :src="IMG_API + currentDetail.backdrop_path"
+          :src="IMG_API + currentDetail?.backdrop_path"
           alt="pic"
         />
       </div>
@@ -28,10 +30,10 @@ const { currentDetail } = storeToRefs(movieStore);
         <h5
           class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-900"
         >
-          {{ currentDetail.title }}
+          {{ currentDetail?.title }}
         </h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {{ currentDetail.overview }}
+          {{ currentDetail?.overview }}
         </p>
       </div>
     </div>

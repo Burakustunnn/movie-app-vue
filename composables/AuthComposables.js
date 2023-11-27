@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import Cookie from "js-cookie"
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -66,11 +67,9 @@ export default function () {
       if (user) {
         const { email, displayName, photoURL } = user;
         authStore.authSuccess({ email, displayName, photoURL });
-
-        localStorage.setItem(
-          "auth",
-          JSON.stringify({ email, displayName, photoURL })
-        );
+        Cookie.set("auth", JSON.stringify({ email, displayName, photoURL }))
+        // Cookie.set("auth", JSON.stringify({ email, displayName, photoURL }),{ expires:2})
+        // istersem veriyi cookide 2 gün boyunca tutarım 
       } else {
         authStore.authFail();
       }

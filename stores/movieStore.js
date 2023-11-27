@@ -3,30 +3,30 @@ const API_KEY = "e29242eb4c132df6f39057f594471f48";
 const useMovieStore = defineStore("movieStore", {
   state: () => ({
     currentMovie: [],
-    loading: false,
     currentDetail: [],
+    loading: false,
+    error:false
   }),
   getters: {},
   actions: {
-    async getMovie(apiKey) {
+    movieStart() {
       this.loading = true;
-      const res = await fetch(apiKey);
-      const data = await res.json();
-
-      this.currentMovie = data.results;
-      this.loading = false;
+      this.error = false;
     },
-    async getMovieDetails(id) {
-      const movieDetailBaseUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
-
-      this.loading = true;
-      const res = await fetch(movieDetailBaseUrl);
-      const data = await res.json();
-      this.currentDetail = data;
+    movieSuccess(payload) {
       this.loading = false;
-
-      console.log(data);
+      this.currentMovie = payload;
+      this.error = false;
     },
+    movieFail() {
+      this.loading = false;
+      this.error = true;
+    },
+    movieDetailsSuccess(payload) {
+      this.loading = false;
+      this.currentDetail = payload;
+      this.error = false;
+    }
   },
 });
 

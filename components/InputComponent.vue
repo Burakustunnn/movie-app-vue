@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import useMovieStore from "../../stores/movieStore";
+import useMovieStore from "../stores/movieStore";
 const API_KEY = "e29242eb4c132df6f39057f594471f48";
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 

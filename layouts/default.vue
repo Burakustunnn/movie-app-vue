@@ -1,4 +1,4 @@
-<template>
+ <template>
   <Navbar />
 
   <div>
@@ -21,7 +21,6 @@ export default {
   setup(){
     const { userObserver } = AuthComposables();
     userObserver()
-
   }
 };
 </script>
